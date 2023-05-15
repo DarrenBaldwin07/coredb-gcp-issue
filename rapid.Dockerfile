@@ -31,9 +31,9 @@ COPY ./src ./src
 
 # 5. Finally, build for release. (this is the same as cargo build --release but with a specified dir)
 RUN rm ./target/release/coredb-gcp-issue*
-RUN cargo install --path .
+RUN cargo build --release
 
 EXPOSE 8080
 
 # Invoke the binary (this has to be the name of the binary in Cargo.toml)
-CMD ["coredb-gcp-issue"]
+CMD ["./target/release/coredb-gcp-issue"]

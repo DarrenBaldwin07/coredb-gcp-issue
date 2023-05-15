@@ -9,6 +9,9 @@ rapid_configure!("src/routes");
 async fn main() -> std::io::Result<()> {
     let app = RapidServer::create(None, Some(String::from("0.0.0.0")));
 
+
+    println!("HELLO");
+
     app.listen(HttpServer::new(move || {
         RapidServer::fs_router(None, None, routes!("src/routes"))
     })).await
