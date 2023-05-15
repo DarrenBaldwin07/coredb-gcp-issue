@@ -12,5 +12,7 @@ RUN apt-get install libpq-dev -y
 RUN cargo build --release
 
 
+EXPOSE 8080
+
 # Run the binary
 CMD ["./target/release/coredb-gcp-issue"]
