@@ -4,7 +4,7 @@ export interface Handlers {
 	queries: {
 		"index": {
   			output: any
-  			type: 'get'
+  			type: 'query'
   			isDynamic: false
 		},
 	},

@@ -1,3 +1,4 @@
+use diesel::Connection;
 use rapid_web::server::RapidServer;
 use rapid_web::actix::{web, HttpServer};
 use rapid_web::rapid_web_codegen::{main, routes, rapid_configure};
