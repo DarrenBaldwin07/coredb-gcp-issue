@@ -30,6 +30,7 @@ RUN rm src/*.rs
 COPY ./src ./src
 
 # 5. Finally, build for release. (this is the same as cargo build --release but with a specified dir)
+RUN rm ./target/release/coredb-gcp-issue*
 RUN cargo install --path .
 
 EXPOSE 8080

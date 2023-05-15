@@ -17,3 +17,9 @@ export const routes = {
 		type: 'query',
 	},
 } as const
+
+export type DatabaseConnection = Pool;
+
+export interface Database {
+    url: string;
+}
