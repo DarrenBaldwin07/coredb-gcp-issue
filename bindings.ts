@@ -23,3 +23,10 @@ export type DatabaseConnection = Pool;
 export interface Database {
     url: string;
 }
+
+export interface Post {
+    id: number;
+    title: string;
+    body: string;
+    published: boolean;
+}
