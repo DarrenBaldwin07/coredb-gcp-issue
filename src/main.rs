@@ -1,16 +1,14 @@
 use rapid_web::server::RapidServer;
 use rapid_web::actix::{web, HttpServer};
 use rapid_web::rapid_web_codegen::{main, routes, rapid_configure};
-
+pub mod schema;
 rapid_configure!("src/routes");
+
 
 
 #[main]
 async fn main() -> std::io::Result<()> {
     let app = RapidServer::create(None, Some(String::from("0.0.0.0")));
-
-
-    println!("HELLO");
 
     app.listen(HttpServer::new(move || {
         RapidServer::fs_router(None, None, routes!("src/routes"))

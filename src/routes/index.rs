@@ -4,7 +4,11 @@ use diesel::{
 	pg::PgConnection,
 	r2d2::{ConnectionManager, Pool},
 };
+use diesel::prelude::*;
 use sqlx::{PgPool, postgres::PgPoolOptions};
+use crate::schema::posts::dsl::*;
+
+
 
 pub const ROUTE_KEY: &str = "index";
 
@@ -18,23 +22,38 @@ pub struct Database {
 impl Database {
 	pub fn connection_pool(&self) -> DatabaseConnection {
 		let manager = ConnectionManager::<PgConnection>::new(&self.url);
-		// Refer to the `r2d2` documentation for more methods to use
-		// when building this connection pool (https://crates.io/crates/r2d2)
+
 		Pool::builder()
-			.min_idle(Some(1))
-            .max_size(1)
 			.build(manager)
 			.expect("Could not build connection pool")
 	}
 }
 
+
+#[derive(Queryable)]
+pub struct Post {
+    pub id: i32,
+    pub title: String,
+    pub body: String,
+    pub published: bool,
+}
+
 #[rapid_handler]
 pub async fn query() -> HttpResponse {
+	// THIS WORKS:
 	PgPoolOptions::new()
     .max_connections(100)
-    .connect("postgresql://postgres:z5t1m5rrDRVZ23bs@org-cincinnati-ventures-inst-job-jar-prod.data-1.use1.coredb.io:5432")
+    .connect("postgresql://postgres:d8MEnLYKL6p5SeqG@org-cincinnati-ventures-inst-test-db.data-1.use1.coredb.io:5432")
     .await
     .expect("Failed to create pool.");
+
+
+	// THIS DOES NOT WORK (it throws an error via .expect())
+	let db = Database {
+        url: String::from("postgresql://postgres:d8MEnLYKL6p5SeqG@org-cincinnati-ventures-inst-test-db.data-1.use1.coredb.io:5432")
+    };
+
+    let connection = db.connection_pool();
 
     HttpResponse::Ok()
     .content_type("text/html; charset=utf-8")
