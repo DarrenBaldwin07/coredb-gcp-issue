@@ -125,6 +125,7 @@ version = "2.8.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "15265b6b8e2347670eb363c47fc8c75208b4a4994b27192f345fcbe707804f3e"
 dependencies = [
+ "actix-macros",
  "futures-core",
  "tokio",
 ]
@@ -620,11 +621,15 @@ checksum = "e496a50fda8aacccc86d7529e2c1e0892dbd0f898a6b5645b5561b89c3210efa"
 name = "coredb-gcp-issue"
 version = "0.1.0"
 dependencies = [
+ "actix-rt",
  "diesel",
+ "futures",
  "futures-util",
  "include_dir",
+ "native-tls",
  "postgres",
- "postgres-openssl",
+ "postgres-native-tls",
+ "r2d2",
  "r2d2_postgres",
  "rapid-web",
  "sqlx",
@@ -1791,15 +1796,15 @@ dependencies = [
 ]
 
 [[package]]
-name = "postgres-openssl"
+name = "postgres-native-tls"
 version = "0.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1de0ea6504e07ca78355a6fb88ad0f36cafe9e696cbc6717f16a207f3a60be72"
+checksum = "2d442770e2b1e244bb5eb03b31c79b65bb2568f413b899eaba850fa945a65954"
 dependencies = [
  "futures",
- "openssl",
+ "native-tls",
  "tokio",
- "tokio-openssl",
+ "tokio-native-tls",
  "tokio-postgres",
 ]
 
@@ -2825,18 +2830,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "bbae76ab933c85776efabc971569dd6119c580d8f5d448769dec1764bf796ef2"
 dependencies = [
  "native-tls",
- "tokio",
-]
-
-[[package]]
-name = "tokio-openssl"
-version = "0.6.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c08f9ffb7809f1b20c1b398d92acf4cc719874b3b2b2d9ea2f09b4a80350878a"
-dependencies = [
- "futures-util",
- "openssl",
- "openssl-sys",
  "tokio",
 ]
 

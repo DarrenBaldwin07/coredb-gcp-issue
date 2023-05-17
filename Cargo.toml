@@ -14,5 +14,9 @@ sqlx = { version = "0.5.8", features = ["postgres", "runtime-actix-rustls"] }
 tokio-postgres = "0.7.8"
 r2d2_postgres = "0.18.1"
 postgres = "0.19.5"
-postgres-openssl = "0.5.0"
+native-tls = "0.2.11"
+postgres-native-tls = { version = "0.5.0", features = ["default"]}
+actix-rt = "2.8.0"
+futures = "0.3.28"
+r2d2 = "0.8.10"
 
