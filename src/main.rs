@@ -6,8 +6,9 @@ use r2d2_postgres::{PostgresConnectionManager};
 use native_tls::TlsConnector;
 use postgres_native_tls::MakeTlsConnector;
 use diesel::{
-	r2d2::{Pool, ConnectionManager}
+	r2d2::Pool
 };
+
 rapid_configure!("src/routes");
 
 pub type DatabaseConnection = Pool<PostgresConnectionManager<MakeTlsConnector>>;
