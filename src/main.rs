@@ -33,10 +33,10 @@ impl Database {
 async fn main() -> std::io::Result<()> {
     let app = RapidServer::create(None, Some(String::from("0.0.0.0")));
     let db = Database {
-        url: String::from("postgresql://postgres:d8MEnLYKL6p5SeqG@org-cincinnati-ventures-inst-test-db.data-1.use1.coredb.io:5432")
+        url: String::from("postgresql://postgres:P0bjjocmgaIhJ28Y@org-cincinnati-ventures-inst-job-jar-staging.data-1.use1.coredb.io:5432")
     };
 
-    db.connection_pool();
+    db.connection_pool().get().expect("Could not get connection pool!");
 
     app.listen(HttpServer::new(move || {
         RapidServer::fs_router(None, None, routes!("src/routes"))

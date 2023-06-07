@@ -10,4 +10,5 @@ This [RAPID](https://rapid.cincinnati.ventures/) server project was scaffolded w
 </div>
 
 # Getting started
-> Coming soon...
+
+## Use `cargo run` or `rapid run` to start the dev server - (be sure to add your DATABASE_URL into the `Database` struct in the main.rs file as well)
