@@ -30,6 +30,32 @@ impl Database {
 }
 
 
+/// USE THIS CODE TO TEST TLS/SSL ISSUE WITH COREDB:
+// use diesel::{
+// 	pg::PgConnection,
+// 	r2d2::{ConnectionManager, Pool},
+// };
+
+// pub type DatabaseConnection = Pool<ConnectionManager<PgConnection>>;
+
+// pub struct Database {
+// 	pub url: String,
+// }
+
+// impl Database {
+// 	pub fn connection_pool(&self) -> DatabaseConnection {
+// 		let manager = ConnectionManager::<PgConnection>::new(&self.url);
+// 		// Refer to the `r2d2` documentation for more methods to use
+// 		// when building this connection pool (https://crates.io/crates/r2d2)
+// 		Pool::builder()
+// 			.test_on_check_out(true)
+// 			.build(manager)
+// 			.expect("Could not build connection pool")
+// 	}
+// }
+
+
+
 #[main]
 async fn main() -> std::io::Result<()> {
     let app = RapidServer::create(None, Some(String::from("0.0.0.0")));
