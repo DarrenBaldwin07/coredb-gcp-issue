@@ -17,4 +17,5 @@ native-tls = "0.2.11"
 postgres-native-tls = { version = "0.5.0", features = ["default"]}
 futures = "0.3.28"
 r2d2 = "0.8.10"
+chrono = "0.4.26"
 

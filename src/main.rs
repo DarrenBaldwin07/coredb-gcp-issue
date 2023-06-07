@@ -1,9 +1,10 @@
 use diesel::{PgConnection, r2d2::ConnectionManager};
+use diesel::prelude::*;
+use crate::schema::{posts, posts::dsl::*};
 pub mod schema;
 use diesel::{
 	r2d2::Pool
 };
-
 
 pub type DatabaseConnection = Pool<ConnectionManager<PgConnection>>;
 
@@ -23,12 +24,28 @@ impl Database {
 	}
 }
 
+#[derive(Insertable, AsChangeset)]
+#[table_name = "posts"]
+
+pub struct NewPost<'a> {
+	pub title: &'a str,
+	pub body: &'a str,
+}
 
 
 fn main() {
     let db = Database {
-        url: String::from("postgresql://postgres:P0bjjocmgaIhJ28Y@org-cincinnati-ventures-inst-job-jar-staging.data-1.use1.coredb.io:5432")
+        url: String::from("postgresql://postgres:*********@org-cincinnati-ventures-inst-job-jar-staging.data-1.use1.coredb.io:5432/postgres?sslmode=require")
     };
 
-    db.connection_pool().get().expect("Could not get connection pool!");
+    let mut pool = db.connection_pool().get().expect("Could not get connection pool!");
+
+	let new_company_creation: NewPost = NewPost {
+		title: "thing",
+		body: "dafa",
+	};
+
+	diesel::insert_into(posts).values(&new_company_creation).execute(&mut pool);
+
+
 }
