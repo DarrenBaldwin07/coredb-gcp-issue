@@ -32,20 +32,18 @@ pub struct NewPost<'a> {
 	pub body: &'a str,
 }
 
-
 fn main() {
     let db = Database {
-        url: String::from("postgresql://postgres:*********@org-cincinnati-ventures-inst-job-jar-staging.data-1.use1.coredb.io:5432/postgres?sslmode=require")
+        url: String::from("postgresql://postgres:4Ll4BzezlNTL8ujU@org-cincinnati-ventures-inst-rezon.data-1.use1.coredb.io:5432")
     };
 
     let mut pool = db.connection_pool().get().expect("Could not get connection pool!");
 
 	let new_company_creation: NewPost = NewPost {
-		title: "thing",
-		body: "dafa",
+		title: "thing2222",
+		body: "dafa2222",
 	};
 
 	diesel::insert_into(posts).values(&new_company_creation).execute(&mut pool);
-
 
 }
